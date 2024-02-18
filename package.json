@@ -17,6 +17,7 @@
     "react-native-animated-nav-tab-bar": "^3.1.10",
     "react-native-asset": "^2.1.1",
     "react-native-gesture-handler": "^2.15.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-reanimated": "^3.7.0",
     "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "^4.9.0",

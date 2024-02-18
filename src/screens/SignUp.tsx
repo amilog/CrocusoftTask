@@ -7,7 +7,7 @@ import {
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import LoginTextInput from '../components/LoginTextInput';
@@ -20,8 +20,11 @@ const SignUp: React.FC = () => {
   const [isChecked, setChecked] = useState<boolean>(false);
 
   return (
-    <ScrollView style={styles.container}>
-      <KeyboardAvoidingView behavior="position">
+    <ScrollView keyboardShouldPersistTaps="handled" style={styles.container}>
+      <KeyboardAvoidingView
+        behavior="position"
+        keyboardVerticalOffset={-hp('45%')}
+        style={{flex: 1}}>
         <Image
           source={require('../assets/images/logo.png')}
           style={styles.logo}
