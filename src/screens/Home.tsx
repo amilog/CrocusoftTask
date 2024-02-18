@@ -1,10 +1,12 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TextInput} from 'react-native';
 import React from 'react';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import MenuIcon from '../assets/svgs/MenuIcon';
+import SearchIcon from '../assets/svgs/SearchIcon';
+import FilterIcon from '../assets/svgs/FilterIcon';
 
 const Home = () => {
   return (
@@ -20,7 +22,23 @@ const Home = () => {
           />
         </View>
       </View>
-      <Text style={styles.text}>Home</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.titleText}>Welcome</Text>
+        <Text style={styles.fashionText}>Our Fashions App</Text>
+      </View>
+<View style={styles.searchBarView}>
+<View style={styles.searchBar}>
+        <SearchIcon style={styles.searchIcon} />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Search..."
+          placeholderTextColor="#9B9B9B"
+        />
+      </View>
+        <View style={styles.filterIconCircle}>
+          <FilterIcon style={styles.filterIcon}/>
+        </View>
+</View>
     </View>
   );
 };
@@ -32,8 +50,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  text: {
-    fontSize: 30,
+  titleText: {
+    fontSize: wp('6.6%'),
     fontFamily: 'Poppins-Bold',
     color: 'black',
   },
@@ -61,5 +79,52 @@ const styles = StyleSheet.create({
     borderRadius: hp('5.5%') / 2,
     backgroundColor: '#DDDDDD',
     marginLeft: wp('5%'),
+  },
+  fashionText: {
+    fontSize: wp('5.3%'),
+    fontFamily: 'Poppins-SemiBold',
+    color: 'black',
+  },
+  textContainer: {
+    paddingLeft: wp('6.6%'),
+  },
+  searchBar: {
+    backgroundColor: '#F3F4F5',
+    justifyContent: 'center',
+    paddingHorizontal: wp('4%'),
+    width: wp('72.5%'),
+    borderRadius: wp('72.5%') / 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  textInput: {
+    flex: 1,
+    paddingHorizontal: wp('2%'),
+    fontSize: wp('3.8%'),
+    fontFamily: 'Poppins-Regular',
+    color: 'black',
+  },
+  searchIcon: {
+    marginHorizontal: wp('2%'),
+    marginBottom: hp('0.5%'),
+  },
+  filterIconCircle: {
+    width: hp('5.5%'),
+    height: hp('5.5%'),
+    borderRadius: hp('5.5%') / 2,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchBarView: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: wp('6.6%'),
+    paddingVertical: hp('2.4%'),  
+  },
+  filterIcon: {
+    width: 20,
+    height: 20,
   },
 });
