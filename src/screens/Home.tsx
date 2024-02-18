@@ -26,19 +26,19 @@ const Home = () => {
         <Text style={styles.titleText}>Welcome</Text>
         <Text style={styles.fashionText}>Our Fashions App</Text>
       </View>
-<View style={styles.searchBarView}>
-<View style={styles.searchBar}>
-        <SearchIcon style={styles.searchIcon} />
-        <TextInput
-          style={styles.textInput}
-          placeholder="Search..."
-          placeholderTextColor="#9B9B9B"
-        />
-      </View>
-        <View style={styles.filterIconCircle}>
-          <FilterIcon style={styles.filterIcon}/>
+      <View style={styles.searchBarView}>
+        <View style={styles.searchBar}>
+          <SearchIcon style={styles.searchIcon} />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Search..."
+            placeholderTextColor="#9B9B9B"
+          />
         </View>
-</View>
+        <View style={styles.filterIconCircle}>
+          <FilterIcon style={styles.filterIcon} />
+        </View>
+      </View>
     </View>
   );
 };
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: wp('6.6%'),
-    paddingVertical: hp('2.4%'),  
+    paddingVertical: hp('2.4%'),
   },
   filterIcon: {
     width: 20,
