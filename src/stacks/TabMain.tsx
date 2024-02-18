@@ -9,10 +9,6 @@ import HomeIcon from '../assets/svgs/HomeIcon';
 import CartIcon from '../assets/svgs/CartIcon';
 import NotificationIcon from '../assets/svgs/NotificationIcon';
 import ProfileIcon from '../assets/svgs/ProfileIcon';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 
 const Tab = AnimatedTabBarNavigator();
 
