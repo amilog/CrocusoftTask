@@ -1,7 +1,6 @@
 import {StyleSheet, Text, Vibration, View} from 'react-native';
 import React from 'react';
 import {AnimatedTabBarNavigator} from 'react-native-animated-nav-tab-bar';
-import Home from '../screens/Home';
 import Profile from '../screens/Profile';
 import Cart from '../screens/Cart';
 import Notification from '../screens/Notification';
@@ -9,6 +8,7 @@ import HomeIcon from '../assets/svgs/HomeIcon';
 import CartIcon from '../assets/svgs/CartIcon';
 import NotificationIcon from '../assets/svgs/NotificationIcon';
 import ProfileIcon from '../assets/svgs/ProfileIcon';
+import HomeStack from './HomeStack';
 
 const Tab = AnimatedTabBarNavigator();
 
@@ -25,7 +25,7 @@ const TabMain = () => {
             let iconComponent;
             let iconSize = 20;
             
-            if (route.name === 'Home') {
+            if (route.name === 'HomeStack') {
               iconComponent = (
                 <HomeIcon
                 width={iconSize}
@@ -78,8 +78,8 @@ const TabMain = () => {
           topPadding: 15,
         }}>
         <Tab.Screen
-          name="Home"
-          component={Home}
+          name="HomeStack"
+          component={HomeStack}
           listeners={{tabPress: () => handleTabPress()}}
           />
         <Tab.Screen

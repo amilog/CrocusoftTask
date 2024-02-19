@@ -1,24 +1,19 @@
-import React, {useState} from 'react';
-import {
-  TextInput,
-  View,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from 'react-native';
+import React from 'react';
+import { TextInput, View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import HideIcon from '../assets/svgs/HideIcon';
 import ShowIcon from '../assets/svgs/ShowIcon';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import VerifiedIcon from '../assets/svgs/VerifiedIcon';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 
 interface LoginTextInputProps {
   isPassword?: boolean;
   placeholderText: string;
   showSuccessIcon?: boolean;
   showPasswordVisibilityButton?: boolean;
+  name: string;
+  value: string;
+  onChangeText: (text: string) => void;
+  error?: string;
 }
 
 const LoginTextInput: React.FC<LoginTextInputProps> = ({
@@ -26,8 +21,11 @@ const LoginTextInput: React.FC<LoginTextInputProps> = ({
   placeholderText,
   showSuccessIcon,
   showPasswordVisibilityButton,
+  value,
+  onChangeText,
 }) => {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -41,6 +39,8 @@ const LoginTextInput: React.FC<LoginTextInputProps> = ({
         placeholderTextColor="#9B9B9B"
         cursorColor={'black'}
         style={styles.textInput}
+        onChangeText={onChangeText}
+        value={value}
       />
       <View style={styles.iconsContainer}>
         {showSuccessIcon && <VerifiedIcon style={styles.icons} />}
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    height: 50,
+    height: hp('7%'),
     color: 'black',
   },
 });
