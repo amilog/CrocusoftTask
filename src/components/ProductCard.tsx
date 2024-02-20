@@ -6,8 +6,13 @@ import {
 } from 'react-native-responsive-screen';
 import FavoritedIcon from '../assets/svgs/FavoritedIcon';
 import FavoritIcon from '../assets/svgs/FavoritIcon';
+import {ProductData} from '../data/productData';
 
-const ProductCard = ({title, price}: any) => {
+interface Props {
+  data: ProductData;
+}
+
+const ProductCard: React.FC<Props> = ({data}) => {
   const [liked, setLiked] = useState(false);
 
   const handleLikePress = () => {
@@ -18,15 +23,15 @@ const ProductCard = ({title, price}: any) => {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
-          source={require('../assets/images/product-img1.png')}
+          source={data.image}
           style={styles.image}
           resizeMode="cover"
         />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.titleText}>Ayaqqab</Text>
-        <Text style={styles.text}>Traveler Tote</Text>
-        <Text style={styles.price}>$ 155</Text>
+        <Text style={styles.titleText}>{data.title}</Text>
+        <Text style={styles.text}>{data.text}</Text>
+        <Text style={styles.price}>$ {data.price}</Text>
       </View>
       <TouchableOpacity onPress={handleLikePress} style={styles.likeButton}>
         {liked ? <FavoritedIcon /> : <FavoritIcon />}

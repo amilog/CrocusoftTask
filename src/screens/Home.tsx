@@ -1,19 +1,27 @@
-// Home.js
-
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, FlatList } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  FlatList,
+  ScrollView,
+} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import MenuIcon from '../assets/svgs/MenuIcon';
-import SearchIcon from '../assets/svgs/SearchIcon';
-import FilterIcon from '../assets/svgs/FilterIcon';
 import CampaignCard from '../components/CampaignCard';
-import { campaignData } from '../data/campaignData';
-import ProductCard from '../components/ProductCard';
+import {campaignData} from '../data/campaignData';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import SearchBar from '../components/SearchBar';
+import ProductCategory from '../components/ProductCategory';
 
-const Home = () => {
+const Home: React.FC<{navigation: NativeStackNavigationProp<any>}> = ({
+  navigation,
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.menuBar}>
@@ -31,30 +39,20 @@ const Home = () => {
         <Text style={styles.titleText}>Welcome</Text>
         <Text style={styles.fashionText}>Our Fashions App</Text>
       </View>
-      <View style={styles.searchBarView}>
-        <View style={styles.searchBar}>
-          <SearchIcon style={styles.searchIcon} />
-          <TextInput
-            style={styles.textInput}
-            placeholder="Search..."
-            placeholderTextColor="#9B9B9B"
-          />
-        </View>
-        <View style={styles.filterIconCircle}>
-          <FilterIcon style={styles.filterIcon} />
-        </View>
-      </View>
-      <FlatList
-        data={campaignData}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <CampaignCard data={item} />}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.flatListContent}
-        indicatorStyle='black'
-        showsVerticalScrollIndicator={true}
-      />
-      <ProductCard/>
+      <SearchBar />
+      <ScrollView>
+        <FlatList
+          data={campaignData}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({item}) => <CampaignCard data={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.campaignFlatListContent}
+        />
+        <ProductCategory navigation={navigation} title="New Arrivals" />
+        <ProductCategory navigation={navigation} title="Most Populars" />
+        <ProductCategory navigation={navigation} title="For Woman etc" />
+      </ScrollView>
     </View>
   );
 };
@@ -102,51 +100,12 @@ const styles = StyleSheet.create({
   textContainer: {
     paddingLeft: wp('6.6%'),
   },
-  searchBar: {
-    backgroundColor: '#F3F4F5',
-    justifyContent: 'center',
-    paddingHorizontal: wp('4%'),
-    width: wp('72.5%'),
-    borderRadius: wp('72.5%') / 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  textInput: {
-    flex: 1,
-    paddingHorizontal: wp('2%'),
-    fontSize: wp('3.8%'),
-    fontFamily: 'Poppins-Regular',
-    color: 'black',
-  },
-  searchIcon: {
-    marginHorizontal: wp('2%'),
-    marginBottom: hp('0.5%'),
-  },
-  filterIconCircle: {
-    width: hp('5.5%'),
-    height: hp('5.5%'),
-    borderRadius: hp('5.5%') / 2,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  searchBarView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  campaignFlatListContent: {
     paddingHorizontal: wp('6.6%'),
-    paddingVertical: hp('2.4%'),
-  },
-  filterIcon: {
-    width: 20,
-    height: 20,
-  },
-  flatListContent: {
-    paddingHorizontal: wp('6.6%'), 
-    paddingVertical: hp('2%'),  
+    paddingVertical: hp('2%'),
     gap: wp('3%'),
-}
+    alignItems: 'center',
+  },
 });
-
 
 export default Home;
