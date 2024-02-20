@@ -80,21 +80,25 @@ const TabMain = () => {
         <Tab.Screen
           name="HomeStack"
           component={HomeStack}
+          options={{ tabBarLabel: 'Home' }}
           listeners={{tabPress: () => handleTabPress()}}
         />
         <Tab.Screen
           name="Cart"
           component={Cart}
+          options={{ tabBarLabel: 'Cart' }}
           listeners={{tabPress: () => handleTabPress()}}
         />
         <Tab.Screen
           name="Notification"
           component={Notification}
+          options={{ tabBarLabel: 'Notification' }}
           listeners={{tabPress: () => handleTabPress()}}
         />
         <Tab.Screen
           name="Profile"
           component={Profile}
+          options={{ tabBarLabel: 'Profile' }}
           listeners={{tabPress: () => handleTabPress()}}
         />
       </Tab.Navigator>

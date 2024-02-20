@@ -1,9 +1,9 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import ViewAllButton from './ViewAllButton';
 import ProductCard from './ProductCard';
-import { productData } from '../data/productData';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {productData} from '../data/productData';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -14,7 +14,10 @@ interface ProductCategoryProps {
   title: string;
 }
 
-const ProductCategory: React.FC<ProductCategoryProps> = ({ navigation, title }) => {
+const ProductCategory: React.FC<ProductCategoryProps> = ({
+  navigation,
+  title,
+}) => {
   return (
     <>
       <View style={styles.categoryBar}>
@@ -24,7 +27,9 @@ const ProductCategory: React.FC<ProductCategoryProps> = ({ navigation, title }) 
       <FlatList
         data={productData}
         keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => <ProductCard data={item} />}
+        renderItem={({item}) => (
+          <ProductCard navigation={navigation} data={item} />
+        )}
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.productFlatListContent}

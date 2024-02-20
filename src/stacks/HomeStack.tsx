@@ -4,9 +4,16 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../screens/Home';
 import Detail from '../screens/Detail';
 import ProductList from '../screens/ProductList';
+import {ProductData} from '../data/productData';
+
+type RootStackParamList = {
+  Home: undefined;
+  ProductList: undefined;
+  Detail: {data: ProductData};
+};
 
 const HomeStack = () => {
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
     <Stack.Navigator
       screenOptions={{

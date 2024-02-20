@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -7,26 +8,28 @@ import {
 import FavoritedIcon from '../assets/svgs/FavoritedIcon';
 import FavoritIcon from '../assets/svgs/FavoritIcon';
 import {ProductData} from '../data/productData';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-interface Props {
+interface ProductCardProps {
+  navigation: NativeStackNavigationProp<any>;
   data: ProductData;
 }
 
-const ProductCard: React.FC<Props> = ({data}) => {
+const ProductCard: React.FC<ProductCardProps> = ({navigation, data}) => {
   const [liked, setLiked] = useState(false);
+
+  const navigateToDetailScreen = () => {
+    navigation.navigate('Detail', {data});
+  };
 
   const handleLikePress = () => {
     setLiked(!liked);
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={navigateToDetailScreen} style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image
-          source={data.image}
-          style={styles.image}
-          resizeMode="cover"
-        />
+        <Image source={data.image} style={styles.image} resizeMode="cover" />
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.titleText}>{data.title}</Text>
@@ -36,7 +39,7 @@ const ProductCard: React.FC<Props> = ({data}) => {
       <TouchableOpacity onPress={handleLikePress} style={styles.likeButton}>
         {liked ? <FavoritedIcon /> : <FavoritIcon />}
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 
