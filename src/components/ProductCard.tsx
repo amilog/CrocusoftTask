@@ -37,7 +37,11 @@ const ProductCard: React.FC<ProductCardProps> = ({navigation, data}) => {
         <Text style={styles.price}>$ {data.price}</Text>
       </View>
       <TouchableOpacity onPress={handleLikePress} style={styles.likeButton}>
-        {liked ? <FavoritedIcon /> : <FavoritIcon />}
+        {liked ? (
+          <FavoritedIcon width={10} height={10} color={'#fff'}  />
+        ) : (
+          <FavoritIcon width={10} height={10} color={'#fff'} />
+        )}
       </TouchableOpacity>
     </TouchableOpacity>
   );
