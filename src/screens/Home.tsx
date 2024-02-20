@@ -4,7 +4,6 @@ import {
   Text,
   View,
   Image,
-  TextInput,
   FlatList,
   ScrollView,
 } from 'react-native';

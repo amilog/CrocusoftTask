@@ -1,6 +1,6 @@
-import {StyleSheet, Text, Vibration, View} from 'react-native';
+import { StyleSheet, Text, Vibration, View, Platform } from 'react-native';
 import React from 'react';
-import {AnimatedTabBarNavigator} from 'react-native-animated-nav-tab-bar';
+import { AnimatedTabBarNavigator } from 'react-native-animated-nav-tab-bar';
 import Profile from '../screens/Profile';
 import Cart from '../screens/Cart';
 import Notification from '../screens/Notification';
@@ -20,8 +20,8 @@ const TabMain = () => {
   return (
     <View style={styles.container}>
       <Tab.Navigator
-        screenOptions={({route}) => ({
-          tabBarIcon: ({focused}: any) => {
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused }: any) => {
             let iconComponent;
             let iconSize = 20;
 
@@ -70,6 +70,20 @@ const TabMain = () => {
           tabStyle: {
             borderTopLeftRadius: 30,
             borderTopRightRadius: 30,
+            ...Platform.select({
+              android: {
+                elevation: 8,
+              },
+              ios: {
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 4,
+                },
+                shadowOpacity: 0.3,
+                shadowRadius: 4.65,
+              },
+            }),
           },
         }}
         appearance={{
@@ -81,25 +95,25 @@ const TabMain = () => {
           name="HomeStack"
           component={HomeStack}
           options={{ tabBarLabel: 'Home' }}
-          listeners={{tabPress: () => handleTabPress()}}
+          listeners={{ tabPress: () => handleTabPress() }}
         />
         <Tab.Screen
           name="Cart"
           component={Cart}
           options={{ tabBarLabel: 'Cart' }}
-          listeners={{tabPress: () => handleTabPress()}}
+          listeners={{ tabPress: () => handleTabPress() }}
         />
         <Tab.Screen
           name="Notification"
           component={Notification}
           options={{ tabBarLabel: 'Notification' }}
-          listeners={{tabPress: () => handleTabPress()}}
+          listeners={{ tabPress: () => handleTabPress() }}
         />
         <Tab.Screen
           name="Profile"
           component={Profile}
           options={{ tabBarLabel: 'Profile' }}
-          listeners={{tabPress: () => handleTabPress()}}
+          listeners={{ tabPress: () => handleTabPress() }}
         />
       </Tab.Navigator>
     </View>
