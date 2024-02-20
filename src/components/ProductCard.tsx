@@ -17,6 +17,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({navigation, data}) => {
   const [liked, setLiked] = useState(false);
+  const {title, text, price, image} = data;
 
   const navigateToDetailScreen = () => {
     navigation.navigate('Detail', {data});
@@ -29,16 +30,16 @@ const ProductCard: React.FC<ProductCardProps> = ({navigation, data}) => {
   return (
     <TouchableOpacity onPress={navigateToDetailScreen} style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={data.image} style={styles.image} resizeMode="cover" />
+        <Image source={image} style={styles.image} resizeMode="cover" />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.titleText}>{data.title}</Text>
-        <Text style={styles.text}>{data.text}</Text>
-        <Text style={styles.price}>$ {data.price}</Text>
+        <Text style={styles.titleText}>{title}</Text>
+        <Text style={styles.text}>{text}</Text>
+        <Text style={styles.price}>$ {price}</Text>
       </View>
       <TouchableOpacity onPress={handleLikePress} style={styles.likeButton}>
         {liked ? (
-          <FavoritedIcon width={10} height={10} color={'#fff'}  />
+          <FavoritedIcon width={10} height={10} color={'#fff'} />
         ) : (
           <FavoritIcon width={10} height={10} color={'#fff'} />
         )}
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: wp('5%'),
     backgroundColor: '#FFFFFF',
     margin: 10,
+    position: 'relative',
   },
   imageContainer: {
     width: '100%',

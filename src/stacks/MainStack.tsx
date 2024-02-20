@@ -19,4 +19,3 @@ const MainStack = () => {
 
 export default MainStack;
 
-const styles = StyleSheet.create({});

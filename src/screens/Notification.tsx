@@ -3,12 +3,24 @@ import React from 'react';
 
 const Notification = () => {
   return (
-    <View>
-      <Text>Notification</Text>
-    </View>
+    <View style={styles.container}>
+    <Text style={styles.text}>Notification</Text>
+  </View>
   );
 };
 
 export default Notification;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 50,
+    fontFamily: 'Poppins-Bold',
+    color: '#000000',
+  },
+});

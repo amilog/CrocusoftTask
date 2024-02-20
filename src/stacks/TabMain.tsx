@@ -1,6 +1,6 @@
-import { StyleSheet, Text, Vibration, View, Platform } from 'react-native';
 import React from 'react';
-import { AnimatedTabBarNavigator } from 'react-native-animated-nav-tab-bar';
+import {View, StyleSheet, Platform, Vibration} from 'react-native';
+import {AnimatedTabBarNavigator} from 'react-native-animated-nav-tab-bar';
 import Profile from '../screens/Profile';
 import Cart from '../screens/Cart';
 import Notification from '../screens/Notification';
@@ -12,59 +12,69 @@ import HomeStack from './HomeStack';
 
 const Tab = AnimatedTabBarNavigator();
 
-const TabMain = () => {
+const TabMain: React.FC = () => {
   const handleTabPress = () => {
     Vibration.vibrate(50);
+  };
+
+  const renderTabIcon = ({route, focused}: {route: any; focused: boolean}) => {
+    let iconComponent;
+    const iconSize = 20;
+
+    switch (route.name) {
+      case 'HomeStack':
+        iconComponent = (
+          <HomeIcon
+            width={iconSize}
+            height={iconSize}
+            fill={focused ? '#FFFFFF' : '#000000'}
+          />
+        );
+        break;
+      case 'Cart':
+        iconComponent = (
+          <CartIcon
+            width={iconSize}
+            height={iconSize}
+            fill={focused ? '#FFFFFF' : '#000000'}
+          />
+        );
+        break;
+      case 'Notification':
+        iconComponent = (
+          <NotificationIcon
+            width={iconSize}
+            height={iconSize}
+            fill={focused ? '#FFFFFF' : '#000000'}
+          />
+        );
+        break;
+      case 'Profile':
+        iconComponent = (
+          <ProfileIcon
+            width={iconSize}
+            height={iconSize}
+            fill={focused ? '#FFFFFF' : '#000000'}
+          />
+        );
+        break;
+      default:
+        break;
+    }
+
+    return (
+      <View style={[styles.tabIconWrapper, focused && styles.activeIcon]}>
+        {iconComponent}
+      </View>
+    );
   };
 
   return (
     <View style={styles.container}>
       <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused }: any) => {
-            let iconComponent;
-            let iconSize = 20;
-
-            if (route.name === 'HomeStack') {
-              iconComponent = (
-                <HomeIcon
-                  width={iconSize}
-                  height={iconSize}
-                  fill={focused ? '#FFFFFF' : '#000000'}
-                />
-              );
-            } else if (route.name === 'Cart') {
-              iconComponent = (
-                <CartIcon
-                  width={iconSize}
-                  height={iconSize}
-                  fill={focused ? '#FFFFFF' : '#000000'}
-                />
-              );
-            } else if (route.name === 'Notification') {
-              iconComponent = (
-                <NotificationIcon
-                  width={iconSize}
-                  height={iconSize}
-                  fill={focused ? '#FFFFFF' : '#000000'}
-                />
-              );
-            } else if (route.name === 'Profile') {
-              iconComponent = (
-                <ProfileIcon
-                  width={iconSize}
-                  height={iconSize}
-                  fill={focused ? '#FFFFFF' : '#000000'}
-                />
-              );
-            }
-            return (
-              <View
-                style={[styles.tabIconWrapper, focused && styles.activeIcon]}>
-                {iconComponent}
-              </View>
-            );
-          },
+        screenOptions={({route}: {route: any}) => ({
+          tabBarIcon: ({focused}: {focused: boolean}) =>
+            renderTabIcon({route, focused}),
         })}
         tabBarOptions={{
           tabStyle: {
@@ -94,33 +104,31 @@ const TabMain = () => {
         <Tab.Screen
           name="HomeStack"
           component={HomeStack}
-          options={{ tabBarLabel: 'Home' }}
-          listeners={{ tabPress: () => handleTabPress() }}
+          options={{tabBarLabel: 'Home'}}
+          listeners={{tabPress: handleTabPress}}
         />
         <Tab.Screen
           name="Cart"
           component={Cart}
-          options={{ tabBarLabel: 'Cart' }}
-          listeners={{ tabPress: () => handleTabPress() }}
+          options={{tabBarLabel: 'Cart'}}
+          listeners={{tabPress: handleTabPress}}
         />
         <Tab.Screen
           name="Notification"
           component={Notification}
-          options={{ tabBarLabel: 'Notification' }}
-          listeners={{ tabPress: () => handleTabPress() }}
+          options={{tabBarLabel: 'Notification'}}
+          listeners={{tabPress: handleTabPress}}
         />
         <Tab.Screen
           name="Profile"
           component={Profile}
-          options={{ tabBarLabel: 'Profile' }}
-          listeners={{ tabPress: () => handleTabPress() }}
+          options={{tabBarLabel: 'Profile'}}
+          listeners={{tabPress: handleTabPress}}
         />
       </Tab.Navigator>
     </View>
   );
 };
-
-export default TabMain;
 
 const styles = StyleSheet.create({
   container: {
@@ -141,3 +149,5 @@ const styles = StyleSheet.create({
     height: 40,
   },
 });
+
+export default TabMain;

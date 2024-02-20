@@ -11,17 +11,15 @@ interface Props {
 }
 
 const CampaignCard: React.FC<Props> = ({data}) => {
+  const {backgroundImage, discount, title, promo} = data;
+
   return (
     <View style={styles.container}>
-      <Image
-        source={data.backgroundImage}
-        style={styles.image}
-        resizeMode="cover"
-      />
+      <Image source={backgroundImage} style={styles.image} resizeMode="cover" />
       <View style={styles.textContainer}>
-        <Text style={styles.discountText}>{data.discount}</Text>
-        <Text style={styles.titleText}>{data.title}</Text>
-        <Text style={styles.promoText}>{data.promo}</Text>
+        <Text style={styles.discountText}>{discount}</Text>
+        <Text style={styles.titleText}>{title}</Text>
+        <Text style={styles.promoText}>{promo}</Text>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Get Now</Text>
         </TouchableOpacity>

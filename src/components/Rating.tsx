@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import StarIcon from '../assets/svgs/StarIcon';
 import {
   widthPercentageToDP as wp,
@@ -10,11 +10,9 @@ const Rating = () => {
   return (
     <View style={styles.container}>
       <View style={styles.stars}>
-        <StarIcon />
-        <StarIcon />
-        <StarIcon />
-        <StarIcon />
-        <StarIcon />
+        {[1, 2, 3, 4, 5].map(index => (
+          <StarIcon key={index} />
+        ))}
       </View>
       <Text style={styles.text}>{' (320 Review)'}</Text>
     </View>

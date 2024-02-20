@@ -3,10 +3,10 @@ import Svg, { Path } from "react-native-svg"
 const SelectedIcon = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={props.width || 10} // Varsayılan genişlik 10
-    height={props.height || 7} // Varsayılan yükseklik 7
+    width={props.width || 10}
+    height={props.height || 7}
     fill="none"
-    viewBox="0 0 10 7" // SVG içeriğinin görüntüleneceği kutunun boyutları
+    viewBox="0 0 10 7"
     {...props}
   >
     <Path

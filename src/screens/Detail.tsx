@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -7,9 +7,12 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { ProductData } from '../data/productData';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {ProductData} from '../data/productData';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import Rating from '../components/Rating';
 import ColorOption from '../components/ColorOption';
 import LeftArrowIcon from '../assets/svgs/LeftArrowIcon';
@@ -19,13 +22,13 @@ import PackageIcon from '../assets/svgs/PackageIcon';
 import InPackageIcon from '../assets/svgs/InPackageIcon';
 
 type RootStackParamList = {
-  Detail: { data: ProductData };
+  Detail: {data: ProductData};
 };
 
 type DetailScreenProps = NativeStackScreenProps<RootStackParamList, 'Detail'>;
 
-const Detail: React.FC<DetailScreenProps> = ({ route, navigation }) => {
-  const { data } = route.params;
+const Detail: React.FC<DetailScreenProps> = ({route, navigation}) => {
+  const {data} = route.params;
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
@@ -34,10 +37,11 @@ const Detail: React.FC<DetailScreenProps> = ({ route, navigation }) => {
 
   const handleSizeSelection = (size: string) => setSelectedSize(size);
   const handleColorSelection = (color: string) => setSelectedColor(color);
-  const handleAddToCart = () => setIsAddedToCart((prev) => !prev);
-  const handleIncreaseQuantity = () => setQuantity((prev) => prev + 1);
-  const handleDecreaseQuantity = () => setQuantity((prev) => Math.max(prev - 1, 1));
-  const handleFavoriteToggle = () => setIsFavorited((prev) => !prev);
+  const handleAddToCart = () => setIsAddedToCart(prev => !prev);
+  const handleIncreaseQuantity = () => setQuantity(prev => prev + 1);
+  const handleDecreaseQuantity = () =>
+    setQuantity(prev => Math.max(prev - 1, 1));
+  const handleFavoriteToggle = () => setIsFavorited(prev => !prev);
 
   return (
     <>
@@ -48,11 +52,23 @@ const Detail: React.FC<DetailScreenProps> = ({ route, navigation }) => {
           </View>
         </TouchableOpacity>
         <View style={styles.rightButtons}>
-          <TouchableOpacity style={styles.circleButton} onPress={handleFavoriteToggle}>
-            {isFavorited ? <FavoritedIcon width={15} height={15} color={'#000'} /> : <FavoritIcon width={15} height={15} color={'#000'} />}
+          <TouchableOpacity
+            style={styles.circleButton}
+            onPress={handleFavoriteToggle}>
+            {isFavorited ? (
+              <FavoritedIcon width={15} height={15} color={'#000'} />
+            ) : (
+              <FavoritIcon width={15} height={15} color={'#000'} />
+            )}
           </TouchableOpacity>
-          <TouchableOpacity style={styles.circleButton} onPress={handleAddToCart}>
-            {isAddedToCart ? <InPackageIcon width={15} height={15} color={'#000'} /> : <PackageIcon width={15} height={15} color={'#000'} />}
+          <TouchableOpacity
+            style={styles.circleButton}
+            onPress={handleAddToCart}>
+            {isAddedToCart ? (
+              <InPackageIcon width={15} height={15} color={'#000'} />
+            ) : (
+              <PackageIcon width={15} height={15} color={'#000'} />
+            )}
           </TouchableOpacity>
         </View>
       </View>
@@ -83,7 +99,7 @@ const Detail: React.FC<DetailScreenProps> = ({ route, navigation }) => {
             <View>
               <Text style={styles.titleText}>Size</Text>
               <View style={styles.sizeContainer}>
-                {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
+                {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
                   <TouchableOpacity
                     key={size}
                     style={[
@@ -103,7 +119,7 @@ const Detail: React.FC<DetailScreenProps> = ({ route, navigation }) => {
               </View>
             </View>
             <View style={styles.colorContainer}>
-              {['#FFFFFF', '#8D8E8D', '#CADCA7', '#F79F1F'].map((color) => (
+              {['#FFFFFF', '#8D8E8D', '#CADCA7', '#F79F1F'].map(color => (
                 <ColorOption
                   key={color}
                   color={color}
@@ -128,7 +144,9 @@ const Detail: React.FC<DetailScreenProps> = ({ route, navigation }) => {
               <Text style={styles.lightText}>Total Price</Text>
               <Text style={styles.price}>$ {data.price * quantity}</Text>
             </View>
-            <TouchableOpacity style={styles.addButton} onPress={handleAddToCart}>
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={handleAddToCart}>
               <Text style={styles.addButtonText}>
                 {isAddedToCart ? 'Added to Cart' : 'Add to Cart'}
               </Text>

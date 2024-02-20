@@ -3,7 +3,6 @@ import { TextInput, View, TouchableOpacity, Text, StyleSheet } from 'react-nativ
 import HideIcon from '../assets/svgs/HideIcon';
 import ShowIcon from '../assets/svgs/ShowIcon';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import VerifiedIcon from '../assets/svgs/VerifiedIcon';
 
 interface LoginTextInputProps {
   isPassword?: boolean;
@@ -19,7 +18,6 @@ interface LoginTextInputProps {
 const LoginTextInput: React.FC<LoginTextInputProps> = ({
   isPassword,
   placeholderText,
-  showSuccessIcon,
   showPasswordVisibilityButton,
   value,
   onChangeText,

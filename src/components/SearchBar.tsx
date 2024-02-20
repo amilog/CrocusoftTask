@@ -1,5 +1,5 @@
-import {StyleSheet, Text, TextInput, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     backgroundColor: '#F3F4F5',
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: wp('4%'),
     width: wp('72.5%'),
     borderRadius: wp('72.5%') / 2,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   searchIcon: {
     marginHorizontal: wp('2%'),

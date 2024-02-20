@@ -1,4 +1,3 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../screens/Home';
@@ -12,6 +11,8 @@ type RootStackParamList = {
   Detail: {data: ProductData};
 };
 
+import { FC } from 'react';
+
 const HomeStack = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
   return (
@@ -20,12 +21,10 @@ const HomeStack = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="ProductList" component={ProductList} />
+      <Stack.Screen name="ProductList" component={ProductList as FC} />
       <Stack.Screen name="Detail" component={Detail} />
     </Stack.Navigator>
   );
 };
 
 export default HomeStack;
-
-const styles = StyleSheet.create({});
