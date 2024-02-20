@@ -11,8 +11,8 @@ const App = () => {
     <SafeAreaProvider style={styles.container}>
       <NavigationContainer>
         <StatusBar barStyle="dark-content" backgroundColor="transparent" />
-        {/* <TabMain /> */}
-        <MainStack />
+        <TabMain />
+        {/* <MainStack /> */}
       </NavigationContainer>
     </SafeAreaProvider>
   );

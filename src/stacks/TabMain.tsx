@@ -24,43 +24,43 @@ const TabMain = () => {
           tabBarIcon: ({focused}: any) => {
             let iconComponent;
             let iconSize = 20;
-            
+
             if (route.name === 'HomeStack') {
               iconComponent = (
                 <HomeIcon
-                width={iconSize}
-                height={iconSize}
-                fill={focused ? '#FFFFFF' : '#000000'}
-                />
-                );
-              } else if (route.name === 'Cart') {
-                iconComponent = (
-                  <CartIcon
                   width={iconSize}
                   height={iconSize}
                   fill={focused ? '#FFFFFF' : '#000000'}
-                  />
-                  );
-                } else if (route.name === 'Notification') {
-                  iconComponent = (
-                    <NotificationIcon
-                    width={iconSize}
-                    height={iconSize}
-                    fill={focused ? '#FFFFFF' : '#000000'}
-                    />
-                    );
-                  } else if (route.name === 'Profile') {
-                    iconComponent = (
-                      <ProfileIcon
-                      width={iconSize}
-                      height={iconSize}
-                      fill={focused ? '#FFFFFF' : '#000000'}
-                      />
-                      );
-                    }
-                    return (
-                      <View
-                      style={[styles.tabIconWrapper, focused && styles.activeIcon]}>
+                />
+              );
+            } else if (route.name === 'Cart') {
+              iconComponent = (
+                <CartIcon
+                  width={iconSize}
+                  height={iconSize}
+                  fill={focused ? '#FFFFFF' : '#000000'}
+                />
+              );
+            } else if (route.name === 'Notification') {
+              iconComponent = (
+                <NotificationIcon
+                  width={iconSize}
+                  height={iconSize}
+                  fill={focused ? '#FFFFFF' : '#000000'}
+                />
+              );
+            } else if (route.name === 'Profile') {
+              iconComponent = (
+                <ProfileIcon
+                  width={iconSize}
+                  height={iconSize}
+                  fill={focused ? '#FFFFFF' : '#000000'}
+                />
+              );
+            }
+            return (
+              <View
+                style={[styles.tabIconWrapper, focused && styles.activeIcon]}>
                 {iconComponent}
               </View>
             );
@@ -81,12 +81,12 @@ const TabMain = () => {
           name="HomeStack"
           component={HomeStack}
           listeners={{tabPress: () => handleTabPress()}}
-          />
+        />
         <Tab.Screen
           name="Cart"
           component={Cart}
           listeners={{tabPress: () => handleTabPress()}}
-          />
+        />
         <Tab.Screen
           name="Notification"
           component={Notification}
@@ -107,6 +107,7 @@ export default TabMain;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   tabIconWrapper: {
     alignItems: 'center',

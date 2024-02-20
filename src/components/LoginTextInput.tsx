@@ -43,7 +43,6 @@ const LoginTextInput: React.FC<LoginTextInputProps> = ({
         value={value}
       />
       <View style={styles.iconsContainer}>
-        {showSuccessIcon && <VerifiedIcon style={styles.icons} />}
         {isPassword && showPasswordVisibilityButton && (
           <TouchableOpacity onPress={togglePasswordVisibility}>
             {isPasswordVisible ? (

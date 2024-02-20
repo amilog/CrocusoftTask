@@ -1,5 +1,7 @@
-import {StyleSheet, Text, View, Image, TextInput} from 'react-native';
+// Home.js
+
 import React from 'react';
+import { StyleSheet, Text, View, Image, TextInput, FlatList } from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -7,6 +9,8 @@ import {
 import MenuIcon from '../assets/svgs/MenuIcon';
 import SearchIcon from '../assets/svgs/SearchIcon';
 import FilterIcon from '../assets/svgs/FilterIcon';
+import CampaignCard from '../components/CampaignCard';
+import { campaignData } from '../data/campaignData';
 
 const Home = () => {
   return (
@@ -39,11 +43,17 @@ const Home = () => {
           <FilterIcon style={styles.filterIcon} />
         </View>
       </View>
+      <FlatList
+        data={campaignData}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <CampaignCard data={item} />}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.flatListContent}
+      />
     </View>
   );
 };
-
-export default Home;
 
 const styles = StyleSheet.create({
   container: {
@@ -127,4 +137,12 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
+  flatListContent: {
+    paddingHorizontal: wp('6.6%'), 
+    paddingVertical: hp('2%'),  
+    gap: wp('3%'),
+}
 });
+
+
+export default Home;

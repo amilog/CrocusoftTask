@@ -12,11 +12,11 @@ import CheckBox from '@react-native-community/checkbox';
 import LoginTextInput from '../components/LoginTextInput';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { useNavigation } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 
 const validationSchema = Yup.object().shape({
@@ -30,9 +30,9 @@ const validationSchema = Yup.object().shape({
     .required('Confirm Password is required'),
 });
 
-const SignUp: React.FC = () => {
+const SignUp: React.FC<{ navigation: NativeStackNavigationProp<any> }> = ({ navigation }) => {
   const [isChecked, setChecked] = useState<boolean>(false);
-  const navigation = useNavigation();
+
 
   return (
     <ScrollView keyboardShouldPersistTaps="handled" style={styles.container}>
@@ -58,7 +58,7 @@ const SignUp: React.FC = () => {
           validationSchema={validationSchema}
           onSubmit={values => {
             console.log(values);
-            navigation.navigate('TabMain');
+            navigation.replace('TabMain');
           }}>
           {({handleChange, handleSubmit, values, errors, touched}) => (
             <>
