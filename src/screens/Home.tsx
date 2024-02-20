@@ -11,6 +11,7 @@ import SearchIcon from '../assets/svgs/SearchIcon';
 import FilterIcon from '../assets/svgs/FilterIcon';
 import CampaignCard from '../components/CampaignCard';
 import { campaignData } from '../data/campaignData';
+import ProductCard from '../components/ProductCard';
 
 const Home = () => {
   return (
@@ -50,7 +51,10 @@ const Home = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.flatListContent}
+        indicatorStyle='black'
+        showsVerticalScrollIndicator={true}
       />
+      <ProductCard/>
     </View>
   );
 };
